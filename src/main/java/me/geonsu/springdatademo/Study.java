@@ -12,6 +12,19 @@ public class Study {
     /*
     현재 이 reference가 collection이 아니라, 한 개이기 때문에 **One으로 끝난다.
      */
+    /*
+    @ManyToOne
+    private Account owner;
+
+    public Account getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
+     */
+
     @ManyToOne
     private Account owner;
 
