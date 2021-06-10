@@ -33,8 +33,6 @@ public class Account {
     })
     private Address address;
 
-
-
     public Long getId() {
         return id;
     }

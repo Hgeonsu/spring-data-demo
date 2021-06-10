@@ -1,5 +1,6 @@
 package me.geonsu.springdatademo;
 
+import org.hibernate.Session;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,13 @@ public class JpaRunner implements ApplicationRunner {
         account.setUsername("geon");
         account.setPassword("jpa");
 
-        entityManager.persist(account);
+        Study study = new Study();
+        study.setName("Spring Data JPA");
+        study.setOwner(account);
+
+        //entityManager.persist(account);
+        Session session = entityManager.unwrap(Session.class);
+        session.save(account);
+        session.save(study);
     }
 }
