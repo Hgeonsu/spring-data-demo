@@ -1,9 +1,6 @@
 package me.geonsu.springdatademo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +13,11 @@ public class Post {
 
     private String title;
 
-    @OneToMany(mappedBy = "post")
+    /*
+    * Post가 transient 상태에서 persistent 상태가 될 때, 얘도 같이 persistent 상태로 만들으라는 의미
+    * session.save(post)하면 comment에도 전파가 된다
+     */
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<>();
 
     public void addComment(Comment comment) {
