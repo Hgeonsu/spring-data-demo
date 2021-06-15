@@ -32,7 +32,7 @@ public class JpaRunner implements ApplicationRunner {
         Session session = entityManager.unwrap(Session.class);
         session.save(post);
 
-        Post post1 = session.get(Post.class, 1l);
-        session.delete(post1);
+//        Post post1 = session.get(Post.class, 1l);
+//        session.delete(post1);
     }
 }
