@@ -1,8 +1,12 @@
 package me.geonsu.springdatademo;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.RepositoryDefinition;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface CommentRepository extends MyRepository<Comment, Long> {
 
@@ -16,4 +20,17 @@ public interface CommentRepository extends MyRepository<Comment, Long> {
 //    Comment save(Comment comment);
 //
 //    List<Comment> findAll();
+
+    //메소드 이름으로 생성 못하면, 쿼리문 사용. 뒤의 옵션이 있어야 SQL로 입력 가능
+//    @Query(value = "SELECT c FROM Comment AS c", nativeQuery = true)
+    List<Comment> findByCommentContainsIgnoreCaseAndLikeCountGreaterThan(String keyword, int likeCount);
+
+    List<Comment> findByCommentContainsIgnoreCaseOrderByLikeCountDesc(String keyword);
+
+    // 정렬 조건대신에 pageable을 준다
+    Page<Comment> findByCommentContainsIgnoreCase(String keyword, Pageable pageable);
+
+    Stream<Comment> findByCommentContains(String keyword, Pageable pageable);
+
+    Page<Comment> findByLikeCountGreaterThanAndPost(int likeCount, Post post, Pageable pageable);
 }
