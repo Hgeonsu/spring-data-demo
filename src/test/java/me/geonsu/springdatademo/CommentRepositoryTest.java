@@ -70,5 +70,9 @@ public class CommentRepositoryTest {
         comment.setLikeCount(likeCount);
         comment.setComment(s);
         commentRepository.save(comment);
+        /*
+        save를 한다고 insert를 하는 게 아님. persistent context가 될뿐,
+        실제 insert는 DB에서 값을 꺼내서 사용해야하는 상황에 발생
+         */
     }
 }
