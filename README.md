@@ -1,4 +1,4 @@
-# springdatademo
+# spring-data-demo
 
 > 게시글 작성, 게시글에 댓글 작성 그리고 추천하기 기능의 상황을 Spring Data JPA를 활용하여 구현하고, test code를 작성한다.
 
